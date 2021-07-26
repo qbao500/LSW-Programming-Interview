@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5722259935616124499}
   - component: {fileID: 2250414588702830737}
   - component: {fileID: 1003623753801364342}
+  - component: {fileID: 3063057660616406468}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,4 +120,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2250414588702830737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3063057660616406468}
+        m_TargetAssemblyTypeName: ItemShop, Assembly-CSharp
+        m_MethodName: BuyCloth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3063057660616406468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975162863574682990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a46b65e35aac846b5b80876cc931b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
+  shop: {fileID: 0}

@@ -16,17 +16,24 @@ abstract public class MasterShop : MonoBehaviour
     [SerializeField]
     protected Canvas shopCanvas;
 
+    [HideInInspector]
+    public PlayerMoney playerMoney = null;
+
     virtual protected void Start()
     {
+        SetupShop();
         shopCanvas.enabled = false;     
     }
 
-    protected abstract void RefreshShop();
+    protected abstract void SetupShop();
+
+    public abstract void SetPrice(float price);
+
+    public abstract void BuyItem(float price, ref ItemSO boughtItem);
 
     public virtual void OpenShop()
     {
         shopCanvas.enabled = true;
-        RefreshShop();
     }
 
     public virtual void CloseShop()

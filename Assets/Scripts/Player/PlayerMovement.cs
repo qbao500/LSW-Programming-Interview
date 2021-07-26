@@ -11,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    private PlayerInteraction interaction;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        interaction = GetComponent<PlayerInteraction>();
     }
 
     // Update is called once per frame
@@ -28,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * Time.deltaTime);
+        if (!interaction.IsInShop)
+        {
+            rb.MovePosition(rb.position + movement * Time.deltaTime);
+        }     
     }
 
 }

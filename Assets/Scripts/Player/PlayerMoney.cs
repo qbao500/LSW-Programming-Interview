@@ -35,10 +35,12 @@ public class PlayerMoney : MonoBehaviour
     }
 
     private PlayerEquipment equipment;
+    private PlayerInventory inventory;
 
     private void Start()
     {
         equipment = GetComponent<PlayerEquipment>();
+        inventory = GetComponent<PlayerInventory>();
 
         increaseText.text = increaseAmount + " $ / sec";
     }
@@ -55,4 +57,14 @@ public class PlayerMoney : MonoBehaviour
         }
     }
 
+    public void SpendMoneyToBuy(float amount, ref ItemSO boughtItem)
+    {
+        CurrentMoney -= amount;
+        inventory.AddItem(boughtItem);
+    }
+
+    public void ReceiveMoney(float amount)
+    {
+        CurrentMoney += amount;
+    }
 }

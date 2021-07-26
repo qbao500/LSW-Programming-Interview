@@ -15,5 +15,5 @@ public class ClothItemSO : ItemSO
 {
     public clothTypeEnum clothType;
     public float bonusIncrease = 1;
-    public Texture2D clothTexture;
+    public Sprite clothSprite;
 }

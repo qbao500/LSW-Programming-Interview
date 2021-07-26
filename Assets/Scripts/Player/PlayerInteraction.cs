@@ -6,14 +6,20 @@ using TMPro;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI visitText;
+    private TextMeshProUGUI visitText;
+
+    [SerializeField]
+    private GameObject inventoryCanvas;
 
     [HideInInspector]
     public MasterShop currentShop = null;
 
+    public bool IsInShop { get; private set; } = false;
+
     private void Start()
     {
         visitText.enabled = false;
+        inventoryCanvas.SetActive(false);
     }
 
     private void Update()
@@ -21,8 +27,26 @@ public class PlayerInteraction : MonoBehaviour
         // Handle Visiting shop
         if (Input.GetKeyDown(KeyCode.F) && currentShop)
         {
-            print("Enter: " + currentShop.ShopName);
-            currentShop.OpenShop();
+            if (IsInShop)
+            {
+                currentShop.CloseShop();
+                inventoryCanvas.SetActive(false);
+                IsInShop = false;
+                visitText.text = "[F] Visit " + currentShop.ShopName;
+            }
+            else
+            {
+                currentShop.OpenShop();
+                inventoryCanvas.SetActive(true);
+                IsInShop = true;
+                visitText.text = "[F] Get out " + currentShop.ShopName;
+
+                // Set PlayerMoney reference if possible
+                if (!currentShop.playerMoney)
+                {
+                    currentShop.playerMoney = GetComponent<PlayerMoney>();
+                }
+            }        
         }
     }
 

@@ -17,4 +17,4 @@ MonoBehaviour:
   sellRate: 50
   clothType: 1
   bonusIncrease: 3
-  clothTexture: {fileID: 0}
+  clothSprite: {fileID: 21300000, guid: 56305ed169ee6024ea9d717e66277991, type: 3}

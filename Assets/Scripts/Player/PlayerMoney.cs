@@ -34,13 +34,13 @@ public class PlayerMoney : MonoBehaviour
         }
     }
 
-    private PlayerEquipment equipment;
-    private PlayerInventory inventory;
+    public PlayerEquipment Equipment { get; private set; }
+    public PlayerInventory Inventory { get; private set; }
 
     private void Start()
     {
-        equipment = GetComponent<PlayerEquipment>();
-        inventory = GetComponent<PlayerInventory>();
+        Equipment = GetComponent<PlayerEquipment>();
+        Inventory = GetComponent<PlayerInventory>();
 
         increaseText.text = increaseAmount + " $ / sec";
     }
@@ -51,7 +51,7 @@ public class PlayerMoney : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 1)
         {
-            IncreaseAmount = equipment.GetBonusIncrease();
+            IncreaseAmount = Equipment.GetBonusIncrease();
             CurrentMoney += IncreaseAmount;
             timer = 0;
         }
@@ -60,7 +60,7 @@ public class PlayerMoney : MonoBehaviour
     public void SpendMoneyToBuy(float amount, ref ItemSO boughtItem)
     {
         CurrentMoney -= amount;
-        inventory.AddItem(boughtItem);
+        Inventory.AddItem(boughtItem);
     }
 
     public void ReceiveMoney(float amount)

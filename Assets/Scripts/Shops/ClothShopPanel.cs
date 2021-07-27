@@ -12,15 +12,17 @@ public class ClothShopPanel : MonoBehaviour, IDropHandler
         clothShop = transform.root.gameObject.GetComponent<ClothShop>();   
     }
 
+    // Drop on Shop Panel to sell item
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag)
         {
             if (!clothShop || !clothShop.playerMoney) return;
 
-            // Get item data
+            // Get item data and remove it from Inventory
             ClothItemSO clothItem = (ClothItemSO)eventData.pointerDrag.GetComponent<ItemInventory>().itemData;
             eventData.pointerDrag.GetComponent<ItemInventory>().droppedOnSlot = true;
+            clothShop.playerMoney.Inventory.RemoveItem(clothItem);
             Destroy(eventData.pointerDrag);
 
             clothShop.playerMoney.ReceiveMoney(clothItem.SellMoney);

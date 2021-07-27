@@ -15,17 +15,17 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private GameObject itemSlot;
 
-    private List<ItemSO> Items;
+    private List<ItemSO> items;
 
     private void Start()
     {
-        Items = new List<ItemSO>();
+        items = new List<ItemSO>();
     }
 
     public void AddItem(ItemSO item)
     {
         // Add to inventory list
-        Items.Add(item);
+        items.Add(item);
 
         // Spawn icon and set sprite and data
         ItemInventory itemInventory = Instantiate(itemSlot).GetComponent<ItemInventory>();
@@ -35,6 +35,11 @@ public class PlayerInventory : MonoBehaviour
         itemInventory.inventory = this;
         ClothItemSO clothItem = (ClothItemSO)item;
         itemInventory.gameObject.GetComponent<Image>().sprite = clothItem.clothSprite;
+    }
+
+    public void RemoveItem(ItemSO item)
+    {
+        items.Remove(item);
     }
 
     public void SetSellPriceText(float value)

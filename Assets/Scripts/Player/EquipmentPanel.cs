@@ -42,13 +42,15 @@ public class EquipmentPanel : MonoBehaviour, IDropHandler
         clothImage[clothTypeEnum.shoe].sprite = equipment.startShoe.clothSprite;
     }
 
+    // Drop item to Equipment Panel
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag)
         {
-            // Get item data
+            // Get item data and remove it from Inventory
             ClothItemSO clothItem = (ClothItemSO)eventData.pointerDrag.GetComponent<ItemInventory>().itemData;
             eventData.pointerDrag.GetComponent<ItemInventory>().droppedOnSlot = true;
+            inventory.RemoveItem(clothItem);
             Destroy(eventData.pointerDrag);
 
             // Equip for player
